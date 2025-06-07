@@ -1,28 +1,11 @@
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 // import ActivityCard from "./ActivityCard";
 import ActivityList from './ActivityList';
 import ActivityDetail from '../details/ActivityDetail';
 import ActivityForm from '../form/ActivityForm';
+import { useActivities } from '../../../lib/hooks/useActivities';
 
-type AcitivyDashboardProps = {
-  activites: Activity[];
-  selectActivity: (id: string) => void;
-  cancelSelectActivity: () => void;
-  selectedActivity: Activity | null;
-  openForm: (id?: string) => void;
-  closeForm: () => void;
-  editMode: boolean;
-};
-
-export default function ActivityDashboard({
-  activites,
-  selectActivity,
-  cancelSelectActivity,
-  selectedActivity,
-  openForm,
-  closeForm,
-  editMode
-}: AcitivyDashboardProps) {
+export default function ActivityDashboard() {
   // This component will display the dashboard for activities
   // It will show a list of activities and the details of the selected activity
   // It will also handle the selection and cancellation of activities
@@ -30,21 +13,9 @@ export default function ActivityDashboard({
   return (
     <Grid container spacing={3}>
       <Grid size={7}>
-        <ActivityList
-          activites={activites}
-          selectActivity={selectActivity}
-        />
+        <ActivityList />
       </Grid>
-      <Grid size={5}>
-        {selectedActivity && !editMode && (
-          <ActivityDetail
-            selectedActivity={selectedActivity}
-            cancelSelectActivity={cancelSelectActivity}
-            openForm={openForm}
-          />
-        )}
-        {editMode && <ActivityForm closeForm={closeForm} activity={selectedActivity} />}
-      </Grid>
+      <Grid size={5}>Activity Filter Goes Here</Grid>
     </Grid>
   );
 }

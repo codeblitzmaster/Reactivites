@@ -1,11 +1,11 @@
 import { Box, Button, Card, CardActions, Chip } from '@mui/material';
 import { useActivities } from '../../../lib/hooks/useActivities';
+import { Link } from 'react-router';
 
 type Props = {
   activity: Activity;
-  selectActivity?: (id: string) => void;
 };
-export default function ActivityCard({ activity, selectActivity }: Props) {
+export default function ActivityCard({ activity }: Props) {
   // This component will display the details of a single activity
   const { deleteActivity } = useActivities();
 
@@ -37,10 +37,12 @@ export default function ActivityCard({ activity, selectActivity }: Props) {
             Delete
           </Button>
           <Button
+            component={Link}
+            to={`/activities/${activity.id}`}
             size="medium"
             variant="contained"
             color="primary"
-            onClick={() => selectActivity?.(activity.id)}>
+            onClick={() => {}}>
             View
           </Button>
         </Box>

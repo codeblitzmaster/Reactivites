@@ -1,11 +1,9 @@
 import { Group } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Typography, Button, Container, MenuItem } from '@mui/material';
+import { NavLink } from 'react-router';
+import MenuItemLink from '../shared/components/MenuItemLink';
 
-type Props = {
-  openForm: () => void;
-};
-
-export default function NavBar({ openForm }: Props) {
+export default function NavBar() {
   // This component will display the navigation bar for the application
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -15,7 +13,7 @@ export default function NavBar({ openForm }: Props) {
         <Container maxWidth="xl">
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box>
-              <MenuItem sx={{ display: 'flex', gap: 2 }}>
+              <MenuItem component={NavLink} to="/" sx={{ display: 'flex', gap: 2 }}>
                 <Group fontSize="large" />
                 <Typography variant="h4" fontWeight="bold" sx={{ flexGrow: 1 }}>
                   Reactivities
@@ -23,19 +21,10 @@ export default function NavBar({ openForm }: Props) {
               </MenuItem>
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <MenuItem sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'white' }}>
-                Activities
-              </MenuItem>
-              <MenuItem sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'white' }}>
-                About
-              </MenuItem>
-              <MenuItem sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'white' }}>
-                Contact
-              </MenuItem>
+              <MenuItemLink to="/activities">Activities</MenuItemLink>
+              <MenuItemLink to="/createActivity">Create Activity</MenuItemLink>
             </Box>
-            <Button onClick={openForm} size="large" variant="contained" color="warning">
-              Create Activity
-            </Button>
+            <MenuItem>User Menu</MenuItem>
           </Toolbar>
         </Container>
       </AppBar>
